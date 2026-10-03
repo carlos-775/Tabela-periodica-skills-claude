@@ -1,5 +1,7 @@
 # Tabela Periódica das Skills do Claude
 
+![Tabela Periódica das Skills do Claude](tabela-skills.png)
+
 137 skills do Claude organizadas como uma tabela periódica, por famílias. Versão interativa: abre o `index.html` ou a página do GitHub Pages deste repositório.
 
 ★ = essencial para começar. Lista revista em outubro de 2026.
