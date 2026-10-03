@@ -1,6 +1,6 @@
 # Tabela Periódica das Skills do Claude
 
-86 skills do Claude organizadas como uma tabela periódica, por famílias. Versão interativa: abre o `index.html` ou a página do GitHub Pages deste repositório.
+137 skills do Claude organizadas como uma tabela periódica, por famílias. Versão interativa: abre o `index.html` ou a página do GitHub Pages deste repositório.
 
 ★ = essencial para começar. Lista revista em outubro de 2026.
 
@@ -27,6 +27,7 @@
 | **Tf** | theme-factory | Aplica temas de cor e tipografia prontos a slides, docs e páginas. | Anthropic |
 | **Bg** | brand-guidelines | Mantém as cores e a tipografia de uma marca em tudo o que é criado. | Anthropic |
 | **Gf** | slack-gif-creator | Cria GIFs animados otimizados para o Slack. | Anthropic |
+| **Bd** | baoyu-diagram | Diagramas em SVG com um sistema de design escuro e consistente. | Comunidade · [`JimLiu/baoyu-skills`](https://github.com/JimLiu/baoyu-skills) |
 
 ## Construção
 
@@ -37,6 +38,8 @@
 | **Wa** | web-artifacts-builder | Aplicações web mais complexas com React, Tailwind e componentes. | Anthropic |
 | **Wt** | webapp-testing | Testa aplicações web com Playwright: cliques, formulários, capturas de ecrã. | Anthropic |
 | **Ca** | claude-api | Ajuda a construir apps com a API do Claude: modelos, ferramentas, streaming, batch. | Anthropic · [`anthropics/skills`](https://github.com/anthropics/skills) |
+| **Dm** | design.md | Um contrato de design persistente que o agente segue em todas as sessões: cores, tipografia, componentes. | Comunidade (Google Labs) · [`google-labs-code/design.md`](https://github.com/google-labs-code/design.md) |
+| **Tc** | text-to-cad | Descreves uma peça e o agente exporta STEP, STL e 3MF, gera G-code e pode enviar para impressora 3D. | Comunidade · [`earthtojake/text-to-cad`](https://github.com/earthtojake/text-to-cad) |
 
 ## Engenharia
 
@@ -52,6 +55,8 @@
 | **Dp** | deploy-checklist | Checklist antes de publicar: migrações, flags, rollback. | Plugin |
 | **Dd** | documentation | READMEs, runbooks, guias de onboarding e docs de API. | Plugin |
 | **Su** | standup | Transforma a atividade recente num resumo de standup. | Plugin |
+| **Cl** | changelog-generator | Gera notas de versão a partir dos commits e verifica se as mensagens seguem o padrão. | Comunidade · [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills) |
+| **Ci** | ci-cd-pipeline-builder | Deteta a stack do projeto e gera o pipeline de CI/CD. | Comunidade · [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills) |
 
 ## SEO e conteúdo
 
@@ -63,6 +68,16 @@
 | **Cb** | content-brief | Brief detalhado antes de escrever um artigo. | Plugin |
 | **Av** | ai-visibility | Melhora como a marca aparece nas respostas de IAs (GEO). | Plugin |
 | **Cs** | content-strategy | Planeia calendário editorial e lacunas de conteúdo. | Plugin |
+| **Bl** | broken-links | Encontra e corrige links partidos e erros 404 no site ou no código. | Plugin (SearchFit) |
+| **Ct** | content-translation | Traduz e adapta o site para SEO internacional, com etiquetas hreflang. | Plugin (SearchFit) |
+| **Cn** | create-content | Escreve um artigo otimizado para uma palavra-chave: título, meta, títulos, corpo, links internos e schema. | Plugin (SearchFit) |
+| **Tp** | create-topic | Planeia um tema antes de escrever: palavras-chave, ângulo, público e posição face à concorrência. | Plugin (SearchFit) |
+| **Js** | generate-schema | Gera o JSON-LD de uma página, pronto a colar. | Plugin (SearchFit) |
+| **Il** | internal-linking | Analisa e melhora as ligações internas entre páginas, incluindo páginas órfãs. | Plugin (SearchFit) |
+| **Op** | on-page-seo | Otimiza uma página concreta para uma palavra-chave: meta tags, títulos e conteúdo. | Plugin (SearchFit) |
+| **Qs** | seo-check | Verificação rápida de uma página: título, meta, títulos, imagens e dados estruturados. | Plugin (SearchFit) |
+| **Th** | technical-seo | Auditoria técnica: velocidade, Core Web Vitals, indexação, robots.txt e sitemap. | Plugin (SearchFit) |
+| **Tl** | translate-content | Tradução com pesquisa de palavras-chave e adaptação cultural, não palavra a palavra. | Plugin (SearchFit) |
 
 ## Jurídico
 
@@ -72,12 +87,18 @@
 | **Nd** | triage-nda | Classifica NDAs em verde, amarelo ou vermelho. | Plugin |
 | **Cc** | compliance-check | Verifica regulamentação aplicável (ex.: RGPD) a uma ação ou produto. | Plugin |
 | **Lr** | legal-risk-assessment | Classifica riscos legais por gravidade e probabilidade. | Plugin |
+| **Lb** | brief (jurídico) | Briefing jurídico: resumo do dia, pesquisa de um tema ou resposta rápida a um incidente. | Plugin (Anthropic) |
+| **Lp** | legal-response | Responde a pedidos jurídicos comuns com modelos e avisa quando um caso não deve levar resposta de modelo. | Plugin (Anthropic) |
+| **Mt** | meeting-briefing | Prepara reuniões com peso jurídico e acompanha as ações que saem delas. | Plugin (Anthropic) |
+| **Sr** | signature-request | Checklist antes de assinar e envio para assinatura eletrónica, com a ordem dos assinantes. | Plugin (Anthropic) |
+| **Vn** | vendor-check | Estado dos acordos com um fornecedor: o que está assinado, o que falta e os prazos. | Plugin (Anthropic) |
 
 ## Comunicação
 
 | | Skill | O que faz | Origem |
 |---|---|---|---|
 | **Ic** | internal-comms | Comunicações internas: atualizações, newsletters, FAQs, relatórios. | Anthropic |
+| **Se** | sepia | Tira o tom de IA aos textos: release notes, respostas, posts e ficção, com regras para cada tipo de texto. | Comunidade · [`Nanako0129/sepia`](https://github.com/Nanako0129/sepia) |
 
 ## À medida
 
@@ -101,6 +122,7 @@
 | **Dz** | defense-in-depth | Validação em várias camadas: entrada, regra de negócio, base de dados e testes. | Comunidade · [`obra/superpowers`](https://github.com/obra/superpowers) |
 | **Ap** | autoprompt | Envolve o agente num ciclo de plano, construção, revisão, teste e aprovação. Menos falhas, mas cerca de 3x mais tempo e 2x mais tokens, segundo o próprio autor. | Comunidade · [`Spielewoy/autoprompt-skill`](https://github.com/Spielewoy/autoprompt-skill) |
 | **Ps** | open-pstack | Port do pstack usado no Cursor: percebe o sistema antes de mudar, prefere mudanças pequenas e corre o código para provar. | Comunidade · [`ericlitman/open-pstack`](https://github.com/ericlitman/open-pstack) |
+| **Ao** ★ | agent-skills (Addy Osmani) | 24 skills com as práticas de engenharia da Google: especificação, plano, construção, testes, revisão e lançamento, com comandos /spec, /plan, /build, /test, /review e /ship. | Comunidade (Google) · [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) |
 
 ## Contexto e tokens
 
@@ -128,6 +150,7 @@
 | **Ay** | archify | Mapa interativo da arquitetura a partir do código, com antes e depois para rever uma mudança antes do merge. | Comunidade · [`tt-a1i/archify`](https://github.com/tt-a1i/archify) |
 | **Cy** | cyclomatic-complexity | Mede a complexidade de cada função e refatora primeiro as piores, com tabela de antes e depois. | Comunidade · [`saurabhkumar8112/cyclomatic-complexity-skill`](https://github.com/saurabhkumar8112/cyclomatic-complexity-skill) |
 | **Sk** ★ | skilldoctor | Verifica uma skill antes de a instalares: injeção de prompts, leitura de .env ou chaves SSH, permissões amplas, curl para shell. | Comunidade · [`xyiqq/skilldoctor`](https://github.com/xyiqq/skilldoctor) |
+| **Sg** ★ | Claude Security | Análise de vulnerabilidades com vários agentes ao código todo. Tu escolhes os achados e ele prepara as correções, que aplicas tu. | Anthropic (plugin) |
 
 ## Marketing e dados
 
@@ -138,6 +161,7 @@
 | **Fc** | firecrawl | Recolha de dados da web: extrair páginas, pesquisar e percorrer sites inteiros. Uso intenso precisa de chave paga. | Comunidade (Firecrawl) · [`firecrawl/firecrawl`](https://github.com/firecrawl/firecrawl) |
 | **Yt** | youtube-transcript | Obtém a transcrição de vídeos do YouTube para resumir ou tirar notas. | Comunidade · [`michalparkola/tapestry-skills`](https://github.com/michalparkola/tapestry-skills) |
 | **Rm** | remotion | Vídeo feito com código em React: animações, legendas, áudio. | Comunidade (Remotion) · [`remotion-dev/skills`](https://github.com/remotion-dev/skills) |
+| **Sf** | Salesforce in Claude | Traz contas, oportunidades e pipeline do Salesforce para o Claude, com 37 skills de vendas prontas. | Anthropic + Salesforce (plugin) |
 
 ## Criativo e vídeo
 
@@ -161,6 +185,43 @@
 | **Ss** | Skill_Seekers | Converte sites de documentação, repositórios e PDFs em skills do Claude. | Comunidade · [`yusufkaraaslan/Skill_Seekers`](https://github.com/yusufkaraaslan/Skill_Seekers) |
 | **Lw** | karpathy-llm-wiki | Mantém uma wiki pessoal em markdown a partir de fontes, com páginas compiladas e consultas. | Comunidade · [`Astro-Han/karpathy-llm-wiki`](https://github.com/Astro-Han/karpathy-llm-wiki) |
 | **Co** | company_skill | Pesquisa sobre empresas a partir de fontes públicas, com registo de onde vem cada número. | Comunidade · [`kelvinfkr/company_skill`](https://github.com/kelvinfkr/company_skill) |
+| **Au** | automation-advisor | Calcula o retorno e o ponto de equilíbrio antes de decidires automatizar uma tarefa. | Comunidade · [`glebis/claude-skills`](https://github.com/glebis/claude-skills) |
+
+## Assistente do dia a dia
+
+| | Skill | O que faz | Origem |
+|---|---|---|---|
+| **Ck** | call-to-book | Faz uma chamada para marcar consulta ou reserva: vê a agenda, pede autorização antes de ligar e diz que é uma IA. | Anthropic (exemplo) |
+| **Cu** | cancel-unsubscribe | Cancela subscrições a partir de uma descrição, de uma linha do extrato ou de uma captura de ecrã. Também revê o extrato todo. | Anthropic (exemplo) |
+| **Ev** | event-planning | Planeia eventos, de um jantar a um casamento: local, convidados, horários, fornecedores e orçamento. | Anthropic (exemplo) |
+| **Fe** | file-expenses | Submete despesas em plataformas como Expensify, Concur ou Brex, encontra recibos e evita duplicados. | Anthropic (exemplo) |
+| **Fo** | file-form | Trata de papelada: multas, renovação de documentos, formulários e licenças. | Anthropic (exemplo) |
+| **Fn** | financial-calculator | Cálculos e comparação de cenários: impostos, crédito, reforma, arrendar ou comprar. Só matemática, sem acesso a contas. | Anthropic (exemplo) |
+| **Gs** | grocery-shopping | Compras ao domicílio: escolha da loja, lista, orçamento e carrinho. | Anthropic (exemplo) |
+| **Hh** | hire-help | Encontra e marca um profissional: limpezas, reparações, mudanças, montagens. Pensada para plataformas dos EUA. | Anthropic (exemplo) |
+| **Md** | meal-delivery | Encomenda comida para chegar a uma hora certa, calculando para trás. | Anthropic (exemplo) |
+| **Rx** | prescription-refill | Pede a renovação de uma receita na farmácia a partir do nome, do número ou de uma foto da embalagem. | Anthropic (exemplo) |
+| **Rr** | return-refund | Devoluções e reembolsos: encontra a política da loja, trata do processo e da etiqueta de envio. | Anthropic (exemplo) |
+| **Bn** | benepass-reimbursement | Reembolsos pela plataforma Benepass, para quem a tem na empresa. | Anthropic (exemplo) |
+| **Mo** | morning | O teu briefing da manhã numa página, ou agendado para todos os dias úteis. | Anthropic (exemplo) |
+
+## Ferramentas do Claude
+
+| | Skill | O que faz | Origem |
+|---|---|---|---|
+| **Dr** | deep-research | Pesquisa em muitas fontes, compara opções e entrega um relatório com as fontes. | Anthropic (exemplo) |
+| **Do** | docs | Claude Docs: documentos vivos que se partilham, comentam e editam em equipa, e se exportam para Word ou PDF. | Anthropic |
+| **Gg** | google-workspace | Cria e edita Google Docs, Sheets e Slides no teu Drive. | Anthropic (exemplo) |
+| **Mi** | import-memory | Importa a memória de outro assistente de IA para a memória do Claude. | Anthropic (exemplo) |
+| **Ws** ★ | setup-writing-style | Aprende como escreves a partir das tuas mensagens e documentos e cria um perfil de voz, para os rascunhos soarem a ti. | Anthropic (exemplo) |
+| **Pt** | paint | Pinta imagens originais em estilo aguarela, escritas em código, sem modelo de imagem. | Anthropic (exemplo) |
+| **Le** | learn | Modo professor: explica como e porquê algo funciona, com exemplos, perguntas e flashcards. | Anthropic (exemplo) |
+| **Ch** | chrome-browser | Regras para o Claude usar o teu Chrome através da extensão Claude in Chrome. | Anthropic (exemplo) |
+| **Pc** | computer-use | Usa apps no teu computador e vê o ecrã, a partir da app desktop. | Anthropic (exemplo) |
+| **Bb** | built-in-browser | Usa o navegador que vem dentro da app Claude Desktop. | Anthropic (exemplo) |
+| **Fr** | file-reading | Escolhe a forma certa de ler cada ficheiro enviado: PDF, Excel, imagens, arquivos comprimidos. | Anthropic |
+| **Pl** | pdf-reading | Lê e extrai texto, tabelas, imagens e campos de formulário de PDFs, incluindo digitalizados. | Anthropic |
+| **Ks** | product-self-knowledge | Factos verificados sobre os produtos da Anthropic: Claude Code, API, planos e limites. | Anthropic |
 
 ## Contribuir
 

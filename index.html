@@ -10,7 +10,7 @@
 <style>
 :root{
   --bg:#E8EDEF; --panel:#F7F9FA; --ink:#1B2A3A; --muted:#5A6B7A; --line:#C9D3D9;
-  --doc:#2F7D8C; --des:#C2477A; --dev:#6B5BB5; --eng:#2F6FD0; --seo:#4E9448; --leg:#A97F14; --com:#8A6A55; --tua:#1B2A3A; --met:#D1463F; --ctx:#7B8B1E; --web:#E07B00; --mkt:#1E9C8F; --cri:#B5179E; --pes:#5C6F82;
+  --doc:#2F7D8C; --des:#C2477A; --dev:#6B5BB5; --eng:#2F6FD0; --seo:#4E9448; --leg:#A97F14; --com:#8A6A55; --tua:#1B2A3A; --met:#D1463F; --ctx:#7B8B1E; --web:#E07B00; --mkt:#1E9C8F; --cri:#B5179E; --pes:#5C6F82; --dia:#C26A1E; --fer:#3D3D9E;
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
@@ -18,12 +18,12 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#121A22; --panel:#1B2530; --ink:#E6EDF2; --muted:#9AAAB8; --line:#2E3B48;
-    --doc:#4FA3B3; --des:#E0689A; --dev:#9486E0; --eng:#5C93EA; --seo:#72B86B; --leg:#D4A73A; --com:#B38F78; --tua:#E6EDF2; --met:#EE6B64; --ctx:#A7B845; --web:#F59A2E; --mkt:#3FC2B4; --cri:#E04CC6; --pes:#9DB0C3;
+    --doc:#4FA3B3; --des:#E0689A; --dev:#9486E0; --eng:#5C93EA; --seo:#72B86B; --leg:#D4A73A; --com:#B38F78; --tua:#E6EDF2; --met:#EE6B64; --ctx:#A7B845; --web:#F59A2E; --mkt:#3FC2B4; --cri:#E04CC6; --pes:#9DB0C3; --dia:#E8963F; --fer:#8C8CF0;
   }
 }
 :root[data-theme="dark"]{
   --bg:#121A22; --panel:#1B2530; --ink:#E6EDF2; --muted:#9AAAB8; --line:#2E3B48;
-  --doc:#4FA3B3; --des:#E0689A; --dev:#9486E0; --eng:#5C93EA; --seo:#72B86B; --leg:#D4A73A; --com:#B38F78; --tua:#E6EDF2; --met:#EE6B64; --ctx:#A7B845; --web:#F59A2E; --mkt:#3FC2B4; --cri:#E04CC6; --pes:#9DB0C3;
+  --doc:#4FA3B3; --des:#E0689A; --dev:#9486E0; --eng:#5C93EA; --seo:#72B86B; --leg:#D4A73A; --com:#B38F78; --tua:#E6EDF2; --met:#EE6B64; --ctx:#A7B845; --web:#F59A2E; --mkt:#3FC2B4; --cri:#E04CC6; --pes:#9DB0C3; --dia:#E8963F; --fer:#8C8CF0;
 }
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -50,6 +50,7 @@ h1{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;font
 .star{color:var(--leg)}
 .el[aria-pressed="true"] .star{color:#fff}
 .colhead{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:500;font-size:.85rem;color:var(--muted);align-self:end;padding:0 2px 2px;border-bottom:2px solid var(--c)}
+.rowhead{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:500;font-size:.95rem;color:var(--muted);align-self:center;justify-self:end;text-align:right;padding-right:8px;border-right:3px solid var(--c)}
 .detail{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--c,var(--line));border-radius:3px;padding:18px 20px;min-height:150px}
 .detail .big{display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
 .detail .sym{font-size:3.2rem;color:var(--c)}
@@ -75,7 +76,7 @@ h1{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;font
     <p class="empty">Escolhe um elemento da tabela.</p>
   </section>
 
-  <p class="notes">Origem: <strong>Anthropic</strong> são as skills oficiais (as de ficheiros vêm ativas no Claude.ai; as restantes estão no repositório anthropics/skills). <strong>Plugin</strong> vem de pacotes instaláveis (engenharia e jurídico da Anthropic; SEO de terceiros). <strong>Tua</strong> é uma skill criada à medida com o Skill Creator. <strong>Comunidade</strong> são as mais recomendadas entre agosto e outubro de 2026; a maioria foi pensada para o Claude Code, mas qualquer uma pode ser carregada no Claude.ai como ZIP. Skills podem executar código: lê o SKILL.md antes de instalar uma de fonte desconhecida.</p>
+  <p class="notes">Origem: <strong>Anthropic</strong> são as skills oficiais (as de ficheiros vêm ativas no Claude.ai; as restantes estão no repositório anthropics/skills). <strong>Plugin</strong> vem de pacotes instaláveis (engenharia e jurídico da Anthropic; SEO de terceiros). <strong>Tua</strong> é uma skill criada à medida com o Skill Creator. <strong>Comunidade</strong> são as mais recomendadas até outubro de 2026; a maioria foi pensada para o Claude Code, mas qualquer uma pode ser carregada no Claude.ai como ZIP. Skills podem executar código: lê o SKILL.md antes de instalar uma de fonte desconhecida.</p>
 </main>
 
 <script>
@@ -93,7 +94,9 @@ const FAM = {
   web:{nome:"Web e segurança",c:"--web"},
   mkt:{nome:"Marketing e dados",c:"--mkt"},
   cri:{nome:"Criativo e vídeo",c:"--cri"},
-  pes:{nome:"Pesquisa e conhecimento",c:"--pes"}
+  pes:{nome:"Pesquisa e conhecimento",c:"--pes"},
+  dia:{nome:"Assistente do dia a dia",c:"--dia"},
+  fer:{nome:"Ferramentas do Claude",c:"--fer"}
 };
 // [símbolo, nome, família, coluna, linha, essencial, origem, o que faz, frase]
 const EL = [
@@ -192,7 +195,60 @@ const EL = [
  ["Bk","book-to-skill","pes",18,4,0,"Comunidade","Transforma um livro técnico (PDF, EPUB, DOCX) numa skill que o agente consulta capítulo a capítulo.","Usa o livro de Postgres para responder.","Leutenegger/book-to-skill"],
  ["Ss","Skill_Seekers","pes",18,5,0,"Comunidade","Converte sites de documentação, repositórios e PDFs em skills do Claude.","Cria uma skill a partir da documentação do Drizzle.","yusufkaraaslan/Skill_Seekers"],
  ["Lw","karpathy-llm-wiki","pes",18,6,0,"Comunidade","Mantém uma wiki pessoal em markdown a partir de fontes, com páginas compiladas e consultas.","Atualiza a wiki com estas notas.","Astro-Han/karpathy-llm-wiki"],
- ["Co","company_skill","pes",18,7,0,"Comunidade","Pesquisa sobre empresas a partir de fontes públicas, com registo de onde vem cada número.","Analisa esta agência imobiliária.","kelvinfkr/company_skill"]
+ ["Co","company_skill","pes",18,7,0,"Comunidade","Pesquisa sobre empresas a partir de fontes públicas, com registo de onde vem cada número.","Analisa esta agência imobiliária.","kelvinfkr/company_skill"],
+ ["Ao","agent-skills (Addy Osmani)","met",10,8,1,"Comunidade (Google)","24 skills com as práticas de engenharia da Google: especificação, plano, construção, testes, revisão e lançamento, com comandos /spec, /plan, /build, /test, /review e /ship.","/spec para a nova funcionalidade de pagamentos.","addyosmani/agent-skills"],
+ ["Sg","Claude Security","web",15,5,1,"Anthropic (plugin)","Análise de vulnerabilidades com vários agentes ao código todo. Tu escolhes os achados e ele prepara as correções, que aplicas tu.","Faz uma análise de segurança ao repositório.",""],
+ ["Cl","changelog-generator","eng",5,7,0,"Comunidade","Gera notas de versão a partir dos commits e verifica se as mensagens seguem o padrão.","Escreve as notas desta versão.","alirezarezvani/claude-skills"],
+ ["Ci","ci-cd-pipeline-builder","eng",4,7,0,"Comunidade","Deteta a stack do projeto e gera o pipeline de CI/CD.","Cria um pipeline que corre os testes em cada PR.","alirezarezvani/claude-skills"],
+ ["Sf","Salesforce in Claude","mkt",16,7,0,"Anthropic + Salesforce (plugin)","Traz contas, oportunidades e pipeline do Salesforce para o Claude, com 37 skills de vendas prontas.","Prepara a reunião com este cliente a partir do Salesforce.",""],
+ ["Dm","design.md","dev",3,7,0,"Comunidade (Google Labs)","Um contrato de design persistente que o agente segue em todas as sessões: cores, tipografia, componentes.","Segue o design.md em todos os ecrãs novos.","google-labs-code/design.md"],
+ ["Tc","text-to-cad","dev",3,8,0,"Comunidade","Descreves uma peça e o agente exporta STEP, STL e 3MF, gera G-code e pode enviar para impressora 3D.","Desenha um suporte de telemóvel para imprimir.","earthtojake/text-to-cad"],
+ ["Bd","baoyu-diagram","des",2,8,0,"Comunidade","Diagramas em SVG com um sistema de design escuro e consistente.","Faz um diagrama escuro da arquitetura.","JimLiu/baoyu-skills"],
+ ["Au","automation-advisor","pes",18,8,0,"Comunidade","Calcula o retorno e o ponto de equilíbrio antes de decidires automatizar uma tarefa.","Vale a pena automatizar este processo?","glebis/claude-skills"],
+ ["Se","sepia","com",8,3,0,"Comunidade","Tira o tom de IA aos textos: release notes, respostas, posts e ficção, com regras para cada tipo de texto.","Reescreve este post para não parecer feito por IA.","Nanako0129/sepia"],
+ ["Bl","broken-links","seo",3,10,0,"Plugin (SearchFit)","Encontra e corrige links partidos e erros 404 no site ou no código.","Procura links partidos no site.",""],
+ ["Ct","content-translation","seo",4,10,0,"Plugin (SearchFit)","Traduz e adapta o site para SEO internacional, com etiquetas hreflang.","Traduz o site para inglês sem perder o SEO.",""],
+ ["Cn","create-content","seo",5,10,0,"Plugin (SearchFit)","Escreve um artigo otimizado para uma palavra-chave: título, meta, títulos, corpo, links internos e schema.","Escreve um artigo sobre arrendar casa em Sintra.",""],
+ ["Tp","create-topic","seo",6,10,0,"Plugin (SearchFit)","Planeia um tema antes de escrever: palavras-chave, ângulo, público e posição face à concorrência.","Planeia um tema sobre crédito habitação.",""],
+ ["Js","generate-schema","seo",7,10,0,"Plugin (SearchFit)","Gera o JSON-LD de uma página, pronto a colar.","Gera o schema desta página.",""],
+ ["Il","internal-linking","seo",8,10,0,"Plugin (SearchFit)","Analisa e melhora as ligações internas entre páginas, incluindo páginas órfãs.","Melhora os links internos do blog.",""],
+ ["Op","on-page-seo","seo",9,10,0,"Plugin (SearchFit)","Otimiza uma página concreta para uma palavra-chave: meta tags, títulos e conteúdo.","Otimiza esta página para \"landing page Lisboa\".",""],
+ ["Qs","seo-check","seo",10,10,0,"Plugin (SearchFit)","Verificação rápida de uma página: título, meta, títulos, imagens e dados estruturados.","Verifica o SEO desta página.",""],
+ ["Th","technical-seo","seo",11,10,0,"Plugin (SearchFit)","Auditoria técnica: velocidade, Core Web Vitals, indexação, robots.txt e sitemap.","Porque é que o Google não indexa o site?",""],
+ ["Tl","translate-content","seo",12,10,0,"Plugin (SearchFit)","Tradução com pesquisa de palavras-chave e adaptação cultural, não palavra a palavra.","Adapta este texto para o mercado brasileiro.",""],
+ ["Lb","brief (jurídico)","leg",13,10,0,"Plugin (Anthropic)","Briefing jurídico: resumo do dia, pesquisa de um tema ou resposta rápida a um incidente.","Prepara-me um briefing sobre RGPD e leads.",""],
+ ["Lp","legal-response","leg",14,10,0,"Plugin (Anthropic)","Responde a pedidos jurídicos comuns com modelos e avisa quando um caso não deve levar resposta de modelo.","Responde a este pedido de apagamento de dados.",""],
+ ["Mt","meeting-briefing","leg",15,10,0,"Plugin (Anthropic)","Prepara reuniões com peso jurídico e acompanha as ações que saem delas.","Prepara a reunião de negociação do contrato.",""],
+ ["Sr","signature-request","leg",16,10,0,"Plugin (Anthropic)","Checklist antes de assinar e envio para assinatura eletrónica, com a ordem dos assinantes.","Prepara este contrato para assinatura.",""],
+ ["Vn","vendor-check","leg",17,10,0,"Plugin (Anthropic)","Estado dos acordos com um fornecedor: o que está assinado, o que falta e os prazos.","Que contratos temos com este fornecedor?",""],
+
+ ["Ck","call-to-book","dia",3,11,0,"Anthropic (exemplo)","Faz uma chamada para marcar consulta ou reserva: vê a agenda, pede autorização antes de ligar e diz que é uma IA.","Marca-me um corte de cabelo para sábado.",""],
+ ["Cu","cancel-unsubscribe","dia",4,11,0,"Anthropic (exemplo)","Cancela subscrições a partir de uma descrição, de uma linha do extrato ou de uma captura de ecrã. Também revê o extrato todo.","Cancela esta subscrição.",""],
+ ["Ev","event-planning","dia",5,11,0,"Anthropic (exemplo)","Planeia eventos, de um jantar a um casamento: local, convidados, horários, fornecedores e orçamento.","Planeia um jantar de aniversário para 12 pessoas.",""],
+ ["Fe","file-expenses","dia",6,11,0,"Anthropic (exemplo)","Submete despesas em plataformas como Expensify, Concur ou Brex, encontra recibos e evita duplicados.","Submete esta despesa.",""],
+ ["Fo","file-form","dia",7,11,0,"Anthropic (exemplo)","Trata de papelada: multas, renovação de documentos, formulários e licenças.","Ajuda-me a contestar esta multa.",""],
+ ["Fn","financial-calculator","dia",8,11,0,"Anthropic (exemplo)","Cálculos e comparação de cenários: impostos, crédito, reforma, arrendar ou comprar. Só matemática, sem acesso a contas.","Compensa mais arrendar ou comprar?",""],
+ ["Gs","grocery-shopping","dia",9,11,0,"Anthropic (exemplo)","Compras ao domicílio: escolha da loja, lista, orçamento e carrinho.","Faz a lista e o carrinho das compras da semana.",""],
+ ["Hh","hire-help","dia",10,11,0,"Anthropic (exemplo)","Encontra e marca um profissional: limpezas, reparações, mudanças, montagens. Pensada para plataformas dos EUA.","Encontra alguém para montar um móvel.",""],
+ ["Md","meal-delivery","dia",11,11,0,"Anthropic (exemplo)","Encomenda comida para chegar a uma hora certa, calculando para trás.","Quero o jantar em casa às 20h.",""],
+ ["Rx","prescription-refill","dia",12,11,0,"Anthropic (exemplo)","Pede a renovação de uma receita na farmácia a partir do nome, do número ou de uma foto da embalagem.","Estou a ficar sem o medicamento.",""],
+ ["Rr","return-refund","dia",13,11,0,"Anthropic (exemplo)","Devoluções e reembolsos: encontra a política da loja, trata do processo e da etiqueta de envio.","Quero devolver esta encomenda.",""],
+ ["Bn","benepass-reimbursement","dia",14,11,0,"Anthropic (exemplo)","Reembolsos pela plataforma Benepass, para quem a tem na empresa.","Pede o reembolso deste recibo na Benepass.",""],
+ ["Mo","morning","dia",15,11,0,"Anthropic (exemplo)","O teu briefing da manhã numa página, ou agendado para todos os dias úteis.","/morning",""],
+
+ ["Dr","deep-research","fer",3,12,0,"Anthropic (exemplo)","Pesquisa em muitas fontes, compara opções e entrega um relatório com as fontes.","Pesquisa o mercado de CRMs imobiliários em Portugal.",""],
+ ["Do","docs","fer",4,12,0,"Anthropic","Claude Docs: documentos vivos que se partilham, comentam e editam em equipa, e se exportam para Word ou PDF.","Faz um doc com o plano de lançamento.",""],
+ ["Gg","google-workspace","fer",5,12,0,"Anthropic (exemplo)","Cria e edita Google Docs, Sheets e Slides no teu Drive.","Atualiza a folha de leads no Google Sheets.",""],
+ ["Mi","import-memory","fer",6,12,0,"Anthropic (exemplo)","Importa a memória de outro assistente de IA para a memória do Claude.","Importa a minha memória do ChatGPT.",""],
+ ["Ws","setup-writing-style","fer",7,12,1,"Anthropic (exemplo)","Aprende como escreves a partir das tuas mensagens e documentos e cria um perfil de voz, para os rascunhos soarem a ti.","Aprende o meu estilo de escrita.",""],
+ ["Pt","paint","fer",8,12,0,"Anthropic (exemplo)","Pinta imagens originais em estilo aguarela, escritas em código, sem modelo de imagem.","Pinta um farol ao pôr do sol.",""],
+ ["Le","learn","fer",9,12,0,"Anthropic (exemplo)","Modo professor: explica como e porquê algo funciona, com exemplos, perguntas e flashcards.","Explica-me o Drizzle do zero.",""],
+ ["Ch","chrome-browser","fer",10,12,0,"Anthropic (exemplo)","Regras para o Claude usar o teu Chrome através da extensão Claude in Chrome.","Abre o site e preenche o formulário.",""],
+ ["Pc","computer-use","fer",11,12,0,"Anthropic (exemplo)","Usa apps no teu computador e vê o ecrã, a partir da app desktop.","Organiza esta pasta no meu computador.",""],
+ ["Bb","built-in-browser","fer",12,12,0,"Anthropic (exemplo)","Usa o navegador que vem dentro da app Claude Desktop.","Abre este site no teu navegador.",""],
+ ["Fr","file-reading","fer",13,12,0,"Anthropic","Escolhe a forma certa de ler cada ficheiro enviado: PDF, Excel, imagens, arquivos comprimidos.","Lê este ficheiro.",""],
+ ["Pl","pdf-reading","fer",14,12,0,"Anthropic","Lê e extrai texto, tabelas, imagens e campos de formulário de PDFs, incluindo digitalizados.","Extrai as tabelas deste PDF.",""],
+ ["Ks","product-self-knowledge","fer",15,12,0,"Anthropic","Factos verificados sobre os produtos da Anthropic: Claude Code, API, planos e limites.","Que plano do Claude preciso?",""]
 ];
 
 const root = document.documentElement;
@@ -213,6 +269,15 @@ for (const [col,f] of heads){
   h.textContent = FAM[f].nome;
   table.appendChild(h);
 }
+
+
+const sep=document.createElement('div');
+sep.className='colhead'; sep.style.gridColumn='1 / -1'; sep.style.gridRow=9; sep.style.borderBottom='none'; sep.style.fontSize='1rem';
+sep.textContent='Mais skills que já vêm no Claude (plugins e exemplos oficiais)'; table.appendChild(sep);
+[[10,"seo","SEO e jurídico (mais)"],[11,"dia","Assistente do dia a dia"],[12,"fer","Ferramentas do Claude"]].forEach(([r,f,t])=>{
+  const h=document.createElement('div'); h.className='rowhead';
+  h.style.gridColumn='1 / span 2'; h.style.gridRow=r; h.style.setProperty('--c',`var(${FAM[f].c})`); h.textContent=t; table.appendChild(h);
+});
 
 EL.forEach((e,i)=>{
   const [sym,nome,fam,col,row,ess] = e;
