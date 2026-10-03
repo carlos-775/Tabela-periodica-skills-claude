@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tabela Periódica das Skills do Claude</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E8EDEF; --panel:#F7F9FA; --ink:#1B2A3A; --muted:#5A6B7A; --line:#C9D3D9;
+  --doc:#2F7D8C; --des:#C2477A; --dev:#6B5BB5; --eng:#2F6FD0; --seo:#4E9448; --leg:#A97F14; --com:#8A6A55; --tua:#1B2A3A; --met:#D1463F; --ctx:#7B8B1E; --web:#E07B00; --mkt:#1E9C8F; --cri:#B5179E; --pes:#5C6F82;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121A22; --panel:#1B2530; --ink:#E6EDF2; --muted:#9AAAB8; --line:#2E3B48;
+    --doc:#4FA3B3; --des:#E0689A; --dev:#9486E0; --eng:#5C93EA; --seo:#72B86B; --leg:#D4A73A; --com:#B38F78; --tua:#E6EDF2; --met:#EE6B64; --ctx:#A7B845; --web:#F59A2E; --mkt:#3FC2B4; --cri:#E04CC6; --pes:#9DB0C3;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121A22; --panel:#1B2530; --ink:#E6EDF2; --muted:#9AAAB8; --line:#2E3B48;
+  --doc:#4FA3B3; --des:#E0689A; --dev:#9486E0; --eng:#5C93EA; --seo:#72B86B; --leg:#D4A73A; --com:#B38F78; --tua:#E6EDF2; --met:#EE6B64; --ctx:#A7B845; --web:#F59A2E; --mkt:#3FC2B4; --cri:#E04CC6; --pes:#9DB0C3;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+main{max-width:1100px;margin:0 auto;padding:24px 16px 48px}
+h1{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;font-size:clamp(2rem,7vw,3.4rem);line-height:1;margin:0 0 8px;letter-spacing:-.01em}
+.lede{color:var(--muted);max-width:60ch;margin:0 0 20px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 16px;padding:0;list-style:none;font-size:.9rem}
+.legend button{all:unset;cursor:pointer;display:flex;align-items:center;gap:6px;padding:2px 0}
+.legend button:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.legend button[aria-pressed="false"]{opacity:.35}
+.sw{width:12px;height:12px;border-radius:2px}
+.scroll{overflow-x:auto;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+.table{display:grid;grid-template-columns:repeat(18,minmax(76px,1fr));grid-auto-rows:88px;gap:5px;min-width:1440px}
+.el{all:unset;box-sizing:border-box;cursor:pointer;position:relative;background:var(--panel);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:3px;padding:6px 7px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .12s, opacity .2s}
+.el:hover{transform:translateY(-2px)}
+.el:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.el[aria-pressed="true"]{background:var(--c);color:#fff;border-color:var(--c)}
+.el[aria-pressed="true"] .n,.el[aria-pressed="true"] .nm{color:#fff}
+.el.dim{opacity:.18}
+.n{font-size:.7rem;color:var(--muted);display:flex;justify-content:space-between}
+.sym{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;font-size:1.9rem;line-height:1}
+.nm{font-size:.68rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.star{color:var(--leg)}
+.el[aria-pressed="true"] .star{color:#fff}
+.colhead{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:500;font-size:.85rem;color:var(--muted);align-self:end;padding:0 2px 2px;border-bottom:2px solid var(--c)}
+.detail{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--c,var(--line));border-radius:3px;padding:18px 20px;min-height:150px}
+.detail .big{display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
+.detail .sym{font-size:3.2rem;color:var(--c)}
+.detail h2{margin:0;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:1.6rem}
+.detail .fam{color:var(--muted);font-size:.9rem}
+.detail p{max-width:65ch;margin:10px 0}
+.trigger{background:var(--bg);border-radius:3px;padding:8px 12px;font-style:italic;display:inline-block}
+.origin{font-size:.85rem;color:var(--muted)}
+.empty{color:var(--muted)}
+.notes{margin-top:28px;font-size:.9rem;color:var(--muted);max-width:70ch}
+@media (prefers-reduced-motion:reduce){.el{transition:none}.el:hover{transform:none}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Tabela Periódica das Skills do Claude</h1>
+  <p class="lede">Cada elemento é uma skill: um pacote de instruções que o Claude carrega quando a tarefa pede. Toca num elemento para ver o que faz e a frase que a ativa. A estrela marca as essenciais para começar.</p>
+
+  <ul class="legend" id="legend"></ul>
+  <div class="scroll"><div class="table" id="table" role="group" aria-label="Tabela de skills"></div></div>
+
+  <section class="detail" id="detail" aria-live="polite">
+    <p class="empty">Escolhe um elemento da tabela.</p>
+  </section>
+
+  <p class="notes">Origem: <strong>Anthropic</strong> são as skills oficiais (as de ficheiros vêm ativas no Claude.ai; as restantes estão no repositório anthropics/skills). <strong>Plugin</strong> vem de pacotes instaláveis (engenharia e jurídico da Anthropic; SEO de terceiros). <strong>Tua</strong> é uma skill criada à medida com o Skill Creator. <strong>Comunidade</strong> são as mais recomendadas entre agosto e outubro de 2026; a maioria foi pensada para o Claude Code, mas qualquer uma pode ser carregada no Claude.ai como ZIP. Skills podem executar código: lê o SKILL.md antes de instalar uma de fonte desconhecida.</p>
+</main>
+
+<script>
+const FAM = {
+  doc:{nome:"Documentos",c:"--doc"},
+  des:{nome:"Design e visual",c:"--des"},
+  dev:{nome:"Construção",c:"--dev"},
+  eng:{nome:"Engenharia",c:"--eng"},
+  seo:{nome:"SEO e conteúdo",c:"--seo"},
+  leg:{nome:"Jurídico",c:"--leg"},
+  com:{nome:"Comunicação",c:"--com"},
+  tua:{nome:"À medida",c:"--tua"},
+  met:{nome:"Método (comunidade)",c:"--met"},
+  ctx:{nome:"Contexto e tokens",c:"--ctx"},
+  web:{nome:"Web e segurança",c:"--web"},
+  mkt:{nome:"Marketing e dados",c:"--mkt"},
+  cri:{nome:"Criativo e vídeo",c:"--cri"},
+  pes:{nome:"Pesquisa e conhecimento",c:"--pes"}
+};
+// [símbolo, nome, família, coluna, linha, essencial, origem, o que faz, frase]
+const EL = [
+ ["Dx","docx","doc",1,2,1,"Anthropic","Cria e edita documentos Word com estilos, tabelas, imagens e alterações controladas.","Faz-me um documento Word com a proposta para o cliente."],
+ ["Pd","pdf","doc",1,3,1,"Anthropic","Cria, junta, divide, preenche formulários e extrai texto ou tabelas de PDFs.","Junta estes três PDFs e extrai a tabela de preços."],
+ ["Pp","pptx","doc",1,4,0,"Anthropic","Gera e edita apresentações PowerPoint com layouts e notas de orador.","Cria um PowerPoint de 8 slides para apresentar o produto."],
+ ["Xl","xlsx","doc",1,5,1,"Anthropic","Folhas de cálculo com fórmulas, formatação, gráficos e limpeza de dados.","Monta um Excel com a previsão de receitas a 12 meses."],
+ ["Dc","doc-coauthoring","doc",1,6,0,"Anthropic","Escreve documentos longos em conjunto contigo, secção a secção, com revisão.","Vamos escrever juntos a especificação desta funcionalidade."],
+
+ ["Fd","frontend-design","des",2,2,1,"Anthropic","Dá direção visual própria a páginas e interfaces, fugindo ao aspeto de template.","Desenha a landing page de um cliente com identidade forte."],
+ ["Cd","canvas-design","des",2,3,0,"Anthropic","Cria pósteres e peças visuais estáticas em PNG ou PDF.","Faz um cartaz para o lançamento do serviço."],
+ ["Aa","algorithmic-art","des",2,4,0,"Anthropic","Arte generativa com código (p5.js), com parâmetros ajustáveis.","Gera arte algorítmica para o fundo do site."],
+ ["Tf","theme-factory","des",2,5,0,"Anthropic","Aplica temas de cor e tipografia prontos a slides, docs e páginas.","Aplica um tema profissional a esta apresentação."],
+ ["Bg","brand-guidelines","des",2,6,0,"Anthropic","Mantém as cores e a tipografia de uma marca em tudo o que é criado.","Usa as regras da minha marca neste documento."],
+ ["Gf","slack-gif-creator","des",2,7,0,"Anthropic","Cria GIFs animados otimizados para o Slack.","Faz um GIF a celebrar o novo cliente."],
+
+ ["Sc","skill-creator","dev",3,2,1,"Anthropic","Cria, testa e melhora skills novas. É a skill que faz skills.","Cria uma skill para o meu processo de onboarding de clientes."],
+ ["Mb","mcp-builder","dev",3,3,0,"Anthropic","Constrói servidores MCP para ligar o Claude a APIs e serviços externos.","Cria um servidor MCP para a API do meu CRM."],
+ ["Wa","web-artifacts-builder","dev",3,4,0,"Anthropic","Aplicações web mais complexas com React, Tailwind e componentes.","Constrói um painel interativo com filtros e gráficos."],
+ ["Wt","webapp-testing","dev",3,5,0,"Anthropic","Testa aplicações web com Playwright: cliques, formulários, capturas de ecrã.","Testa o fluxo de registo da minha app."],
+
+ ["Cr","code-review","eng",4,2,1,"Plugin","Revê alterações de código: segurança, desempenho e casos limite.","Revê este diff antes de eu fazer merge."],
+ ["Db","debug","eng",4,3,1,"Plugin","Depuração estruturada: reproduzir, isolar, diagnosticar, corrigir.","Isto funciona em local mas falha em produção."],
+ ["Td","tech-debt","eng",4,4,0,"Plugin","Identifica e prioriza dívida técnica.","O que devemos refatorar primeiro?"],
+ ["Ar","architecture","eng",4,5,0,"Plugin","Escreve e avalia registos de decisão de arquitetura (ADR).","Compara Redis e Postgres para esta fila."],
+ ["Sd","system-design","eng",4,6,0,"Plugin","Desenha sistemas, APIs e modelos de dados.","Como devo arquitetar o módulo de pagamentos?"],
+ ["Ts","testing-strategy","eng",5,2,0,"Plugin","Define a estratégia e o plano de testes.","Que testes precisa esta funcionalidade?"],
+ ["Ir","incident-response","eng",5,3,0,"Plugin","Triagem de incidentes, comunicação e postmortem.","A produção está em baixo."],
+ ["Dp","deploy-checklist","eng",5,4,0,"Plugin","Checklist antes de publicar: migrações, flags, rollback.","Vou fazer deploy, verifica tudo."],
+ ["Dd","documentation","eng",5,5,0,"Plugin","READMEs, runbooks, guias de onboarding e docs de API.","Escreve o README deste projeto."],
+ ["Su","standup","eng",5,6,0,"Plugin","Transforma a atividade recente num resumo de standup.","Prepara o meu standup de hoje."],
+
+ ["Sa","seo-audit","seo",6,2,1,"Plugin","Auditoria SEO completa de um site ou código.","Faz uma auditoria SEO ao meu site."],
+ ["Kc","keyword-cluster","seo",6,3,0,"Plugin","Agrupa palavras-chave em temas e mapeia-as para páginas.","Agrupa estas palavras-chave num plano de conteúdo."],
+ ["Sm","schema-markup","seo",6,4,0,"Plugin","Gera dados estruturados JSON-LD prontos a colar.","Gera o schema para esta página de serviço."],
+ ["Cb","content-brief","seo",6,5,0,"Plugin","Brief detalhado antes de escrever um artigo.","Cria o brief para um artigo sobre crédito habitação."],
+ ["Av","ai-visibility","seo",6,6,0,"Plugin","Melhora como a marca aparece nas respostas de IAs (GEO).","Como apareço no ChatGPT e no Claude?"],
+ ["Cs","content-strategy","seo",6,7,0,"Plugin","Planeia calendário editorial e lacunas de conteúdo.","Sobre o que devo escrever nos próximos 3 meses?"],
+
+ ["Rc","review-contract","leg",7,2,0,"Plugin","Revê contratos cláusula a cláusula e sugere alterações.","Revê este contrato de fornecedor."],
+ ["Nd","triage-nda","leg",7,3,0,"Plugin","Classifica NDAs em verde, amarelo ou vermelho.","Posso assinar este NDA?"],
+ ["Cc","compliance-check","leg",7,4,0,"Plugin","Verifica regulamentação aplicável (ex.: RGPD) a uma ação ou produto.","Esta funcionalidade cumpre o RGPD?"],
+ ["Lr","legal-risk-assessment","leg",7,5,0,"Plugin","Classifica riscos legais por gravidade e probabilidade.","Qual o risco legal deste acordo?"],
+
+ ["Ic","internal-comms","com",8,2,0,"Anthropic","Comunicações internas: atualizações, newsletters, FAQs, relatórios.","Escreve a atualização semanal para a equipa."],
+
+ ["Im","imolead-engenheira-principal","tua",9,2,1,"Tua","Engenheira principal do ImoLead AI: conhece a arquitetura e conduz melhorias seguras.","Revisão semanal ImoLead."],
+ ["Sp","superpowers","met",10,2,1,"Comunidade","Fluxo completo de desenvolvimento: brainstorm, plano, subagentes por tarefa, testes primeiro e revisão antes do merge. Das coleções mais populares do ecossistema.","Brainstorm: quero adicionar pagamentos por MB Way.","obra/superpowers"],
+ ["Kg","karpathy-guidelines","met",10,3,1,"Comunidade","Quatro regras de comportamento para código: não assumir em silêncio, não complicar, não mexer no que não foi pedido.","Corrige só este bug, sem tocar em mais nada.","forrestchang/andrej-karpathy-skills"],
+ ["Gm","grill-me","met",10,4,1,"Comunidade","Interroga-te sobre o plano até haver entendimento partilhado, antes de escrever código.","Grill me sobre esta especificação antes de começar.","mattpocock/skills"],
+ ["Pr","prd-creator","met",10,5,0,"Comunidade","Gera o documento de requisitos do produto: funcionalidades, limites e tarefas.","Cria o PRD do módulo de WhatsApp.","PageAI-Pro/ralph-loop"],
+ ["Vb","verification-before-completion","met",10,6,0,"Comunidade","Obriga o Claude a verificar o trabalho antes de dizer que está feito.","Só me digas que está pronto depois de testar.","obra/superpowers"],
+ ["Sy","systematic-debugging","met",10,7,0,"Comunidade","Encontra a causa raiz com evidência em vez de tentar correções às cegas.","Descobre porque o scraping falha às vezes.","obra/superpowers"],
+
+ ["Cv","caveman","ctx",12,2,0,"Comunidade","Respostas curtíssimas sem palha: corta em média cerca de dois terços dos tokens de saída, mantendo o código intacto.","/caveman lite","JuliusBrussee/caveman"],
+ ["Cx","context-mode","ctx",12,3,0,"Comunidade","Filtra o ruído dos comandos do terminal e repõe o estado da sessão quando o contexto reinicia.","Continua de onde paraste.","mksglu/context-mode"],
+ ["Hd","handoff","ctx",12,4,1,"Comunidade","Resume a sessão num documento para continuar numa sessão nova ou passar a outro agente.","Faz um handoff desta sessão.","mattpocock/skills"],
+ ["Pj","project-memory","ctx",12,5,0,"Comunidade","Mantém um resumo do projeto entre sessões para não repetires o contexto.","Atualiza a memória do projeto com o que fizemos hoje.","SpillwaveSolutions/project-memory"],
+
+ ["Wg","web-design-guidelines","web",14,2,1,"Comunidade (Vercel)","Audita a interface contra mais de 100 regras de acessibilidade e UX, com resultados por ficheiro e linha.","Audita a acessibilidade deste formulário.","vercel-labs/agent-skills"],
+ ["Rb","react-best-practices","web",14,3,0,"Comunidade (Vercel)","57 regras de desempenho para React e Next.js, ordenadas por impacto.","Porque é que esta página é lenta?","vercel-labs/agent-skills"],
+ ["Cp","composition-patterns","web",14,4,0,"Comunidade (Vercel)","Troca componentes cheios de props booleanas por componentes compostos limpos.","Refatora este componente de cartão.","vercel-labs/agent-skills"],
+ ["Tb","trail-of-bits-security","web",14,5,1,"Comunidade (Trail of Bits)","Análise de segurança profissional com CodeQL e Semgrep e procura de variantes de vulnerabilidades.","Faz uma auditoria de segurança ao módulo de login.","trailofbits/skills"],
+ ["Dy","deployment-procedures","web",14,6,0,"Comunidade","Boas práticas antes de publicar, para não expor chaves nem dados sensíveis.","Verifica tudo antes do deploy no Railway.","davila7/claude-code-templates"],
+
+ ["Mk","marketingskills","mkt",16,2,1,"Comunidade","Pacote de marketing: CRO, copywriting, SEO, anúncios, email e analytics. Todas leem um ficheiro único com o teu produto e público.","Escreve a copy da landing page da Shalon.","coreyhaines31/marketingskills"],
+ ["Ad","claude-ads","mkt",16,3,0,"Comunidade","Auditoria de contas de anúncios (Google, Meta, Microsoft) com pontuação e lista de correções.","Audita esta exportação do Meta Ads.","AgriciDaniel/claude-ads"],
+ ["Fc","firecrawl","mkt",16,4,0,"Comunidade (Firecrawl)","Recolha de dados da web: extrair páginas, pesquisar e percorrer sites inteiros. Uso intenso precisa de chave paga.","Extrai os anúncios desta página de imóveis.","firecrawl/firecrawl"],
+ ["Yt","youtube-transcript","mkt",16,5,0,"Comunidade","Obtém a transcrição de vídeos do YouTube para resumir ou tirar notas.","Resume este vídeo do YouTube.","michalparkola/tapestry-skills"],
+ ["Rm","remotion","mkt",16,6,0,"Comunidade (Remotion)","Vídeo feito com código em React: animações, legendas, áudio.","Cria um vídeo de 15 segundos a apresentar a app.","remotion-dev/skills"],
+ ["Pm","ppt-master","doc",1,7,0,"Comunidade","Gera PowerPoint nativo e editável a partir de documentos: formas, gráficos com dados, masters e animações. Precisa de Python 3.10+. Projeto de um só autor; as recomendações de modelos no README são patrocinadas.","Transforma este relatório num PowerPoint editável.","hugohe3/ppt-master"],
+ ["Ca","claude-api","dev",3,6,0,"Anthropic","Ajuda a construir apps com a API do Claude: modelos, ferramentas, streaming, batch.","Liga a minha app à API do Claude com tool use.","anthropics/skills"],
+ ["Tt","test-driven-development","met",11,2,0,"Comunidade","Escreve o teste antes do código, em cada funcionalidade ou correção.","Implementa isto com testes primeiro.","obra/superpowers"],
+ ["Bs","brainstorming","met",11,3,0,"Comunidade","Transforma uma ideia vaga num desenho completo, com perguntas e alternativas.","Ajuda-me a desenhar esta funcionalidade antes de codar.","obra/superpowers"],
+ ["Gw","using-git-worktrees","met",11,4,0,"Comunidade","Cria worktrees isoladas para trabalhar sem sujar a pasta principal, com verificações de segurança.","Trabalha nisto numa worktree à parte.","obra/superpowers"],
+ ["Dz","defense-in-depth","met",11,5,0,"Comunidade","Validação em várias camadas: entrada, regra de negócio, base de dados e testes.","Protege esta rota em profundidade.","obra/superpowers"],
+ ["Ap","autoprompt","met",11,6,0,"Comunidade","Envolve o agente num ciclo de plano, construção, revisão, teste e aprovação. Menos falhas, mas cerca de 3x mais tempo e 2x mais tokens, segundo o próprio autor.","Faz isto com plano, revisão e testes antes de fechar.","Spielewoy/autoprompt-skill"],
+ ["Ps","open-pstack","met",11,7,0,"Comunidade","Port do pstack usado no Cursor: percebe o sistema antes de mudar, prefere mudanças pequenas e corre o código para provar.","Leva esta tarefa até um PR pronto a rever.","ericlitman/open-pstack"],
+ ["Ah","i-have-adhd","ctx",13,2,1,"Comunidade","Dez regras de saída: a resposta primeiro, passos numerados, no máximo cinco itens por lista, sem frases de enchimento.","Responde direto, só o que importa.","ayghri/i-have-adhd"],
+ ["Bp","benjamin-plus","ctx",13,3,1,"Comunidade (JetBrains)","Cinco hábitos para gastar menos: juntar pesquisas, ler só o necessário, verificar com o comando da tarefa. Funciona melhor colado no CLAUDE.md do que como pasta de skill.","Usa os hábitos do benjamin-plus nesta sessão.","JetBrains/benjamin-plus-skill"],
+ ["Ce","claudish-to-english","ctx",13,4,0,"Comunidade","Reescreve as respostas do agente em linguagem simples no ecrã, sem mudar o que fica gravado.","Mostra-me isto em linguagem simples.","gvzdv/claudish-to-english"],
+ ["Mm","claude-mem","ctx",13,5,0,"Comunidade","Memória persistente: guarda o contexto entre sessões do Claude Code.","Lembra-te do que decidimos ontem.","thedotmack/claude-mem"],
+ ["Ia","icm-architect","ctx",13,6,0,"Comunidade","Transforma um processo numa estrutura de pastas e markdown onde o agente trabalha sem código de orquestração. Tem modo de construção e de reorganização.","Organiza esta pasta para um agente a conseguir operar sozinho.","RinDig/icm-architect"],
+ ["Ay","archify","web",15,2,0,"Comunidade","Mapa interativo da arquitetura a partir do código, com antes e depois para rever uma mudança antes do merge.","Desenha a arquitetura do servidor.","tt-a1i/archify"],
+ ["Cy","cyclomatic-complexity","web",15,3,0,"Comunidade","Mede a complexidade de cada função e refatora primeiro as piores, com tabela de antes e depois.","Onde está o código mais complicado do routes.ts?","saurabhkumar8112/cyclomatic-complexity-skill"],
+ ["Sk","skilldoctor","web",15,4,1,"Comunidade","Verifica uma skill antes de a instalares: injeção de prompts, leitura de .env ou chaves SSH, permissões amplas, curl para shell.","Verifica esta skill antes de eu a instalar.","xyiqq/skilldoctor"],
+ ["Vs","video-shotcraft","cri",17,2,0,"Comunidade","Estúdio de vídeo de produto: descreves o plano e o agente cria e renderiza em React com Remotion. Empresas precisam de licença paga do Remotion.","Faz um vídeo de 30 segundos a mostrar a app.","Vincentwei1021/video-shotcraft"],
+ ["Dg","diagram-design","cri",17,3,1,"Comunidade","28 tipos de diagrama (arquitetura, fluxos, sequência, organogramas) em HTML com SVG, usando as cores da tua marca.","Desenha o fluxo de captação de leads.","cathrynlavery/diagram-design"],
+ ["Lg","ip-as-logo","cri",17,4,0,"Comunidade","Logótipos de mascote simples: propõe três direções e gera seis candidatos com regras rígidas de forma e cor.","Cria um logótipo de mascote para a Shalon.","s1dashu/ip-as-logo-skill"],
+ ["Ei","EpicInfographics","cri",17,5,0,"Comunidade","Infografias com aspeto de estúdio, fugindo aos cartões arredondados, ao azul por omissão e aos emojis.","Faz uma infografia com os números do mercado.","OrRon/EpicInfographics"],
+ ["Sx","scroll-craft","cri",17,6,0,"Comunidade","Sites em que o scroll é a linha do tempo da animação, com contraste e leitura em telemóvel garantidos.","Cria uma landing page animada com o scroll.","nateherkai/scroll-craft"],
+ ["Ux","ui-ux-pro-max","cri",17,7,0,"Comunidade","Biblioteca de estilos, paletas e regras de UX para interfaces mais profissionais.","Melhora o design deste painel.","nextlevelbuilder/ui-ux-pro-max-skill"],
+ ["Ru","refactoring-ui","cri",17,8,0,"Comunidade","Regras do livro Refactoring UI: escalas fixas de espaço, tipo, cor e sombra, e um quadro que diz porque algo parece mal.","Porque é que este ecrã parece barato?","s0xDk/refactoring-ui-skill"],
+ ["Sl","scientific-agent-skills","pes",18,2,0,"Comunidade","163 skills de investigação ligadas a mais de 100 bases de dados científicas. Instala só as que precisas.","Faz uma revisão da literatura sobre isto.","K-Dense-AI/scientific-agent-skills"],
+ ["Nx","neuroarxiv","pes",18,3,0,"Comunidade","Antes de inventar um algoritmo, procura artigos no arXiv e recomenda uma abordagem com fontes.","Já alguém resolveu este problema?","UditAkhourii/neuroarxiv"],
+ ["Bk","book-to-skill","pes",18,4,0,"Comunidade","Transforma um livro técnico (PDF, EPUB, DOCX) numa skill que o agente consulta capítulo a capítulo.","Usa o livro de Postgres para responder.","Leutenegger/book-to-skill"],
+ ["Ss","Skill_Seekers","pes",18,5,0,"Comunidade","Converte sites de documentação, repositórios e PDFs em skills do Claude.","Cria uma skill a partir da documentação do Drizzle.","yusufkaraaslan/Skill_Seekers"],
+ ["Lw","karpathy-llm-wiki","pes",18,6,0,"Comunidade","Mantém uma wiki pessoal em markdown a partir de fontes, com páginas compiladas e consultas.","Atualiza a wiki com estas notas.","Astro-Han/karpathy-llm-wiki"],
+ ["Co","company_skill","pes",18,7,0,"Comunidade","Pesquisa sobre empresas a partir de fontes públicas, com registo de onde vem cada número.","Analisa esta agência imobiliária.","kelvinfkr/company_skill"]
+];
+
+const root = document.documentElement;
+const table = document.getElementById('table');
+const detail = document.getElementById('detail');
+const legend = document.getElementById('legend');
+const active = new Set(Object.keys(FAM));
+let selected = null;
+
+// cabeçalhos das colunas (linha 1)
+const heads = [["1","doc"],["2","des"],["3","dev"],["4 / span 2","eng"],["6","seo"],["7","leg"],["8","com"],["9","tua"],["10 / span 2","met"],["12 / span 2","ctx"],["14 / span 2","web"],["16","mkt"],["17","cri"],["18","pes"]];
+for (const [col,f] of heads){
+  const h = document.createElement('div');
+  h.className='colhead';
+  h.style.gridColumn = col;
+  h.style.gridRow = 1;
+  h.style.setProperty('--c',`var(${FAM[f].c})`);
+  h.textContent = FAM[f].nome;
+  table.appendChild(h);
+}
+
+EL.forEach((e,i)=>{
+  const [sym,nome,fam,col,row,ess] = e;
+  const b = document.createElement('button');
+  b.className='el'; b.dataset.fam=fam; b.setAttribute('aria-pressed','false');
+  b.style.gridColumn=col; b.style.gridRow=row;
+  b.style.setProperty('--c',`var(${FAM[fam].c})`);
+  b.setAttribute('aria-label',`${nome}, ${FAM[fam].nome}`);
+  b.innerHTML = `<span class="n"><span>${i+1}</span>${ess?'<span class="star" aria-label="essencial">★</span>':''}</span><span class="sym">${sym}</span><span class="nm">${nome}</span>`;
+  b.addEventListener('click',()=>select(i,b));
+  table.appendChild(b);
+});
+
+function select(i,b){
+  if(selected) selected.setAttribute('aria-pressed','false');
+  selected=b; b.setAttribute('aria-pressed','true');
+  const [sym,nome,fam,,,ess,orig,oque,frase,repo]=EL[i];
+  detail.style.setProperty('--c',`var(${FAM[fam].c})`);
+  detail.innerHTML = `
+    <div class="big"><span class="sym">${sym}</span>
+      <div><h2>${nome}</h2><div class="fam">${FAM[fam].nome}, elemento ${i+1}${ess?' · essencial':''}</div></div></div>
+    <p>${oque}</p>
+    <p>Frase que a ativa:<br><span class="trigger">“${frase}”</span></p>
+    <p class="origin">Origem: ${orig}${repo?`<br>Repositório GitHub: <strong>${repo}</strong>`:''}</p>`;
+}
+
+Object.entries(FAM).forEach(([k,f])=>{
+  const li=document.createElement('li');
+  const b=document.createElement('button');
+  b.setAttribute('aria-pressed','true');
+  b.innerHTML=`<span class="sw" style="background:var(${f.c})"></span>${f.nome}`;
+  b.addEventListener('click',()=>{
+    active.has(k)?active.delete(k):active.add(k);
+    b.setAttribute('aria-pressed',active.has(k));
+    document.querySelectorAll('.el').forEach(el=>el.classList.toggle('dim',!active.has(el.dataset.fam)));
+  });
+  li.appendChild(b); legend.appendChild(li);
+});
+</script>
+</body>
+</html>

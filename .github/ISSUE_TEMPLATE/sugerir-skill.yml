@@ -1,0 +1,38 @@
+name: Sugerir uma skill
+description: Propõe uma skill do Claude para entrar na tabela
+title: "[Sugestão] "
+labels: ["sugestão"]
+body:
+  - type: input
+    id: nome
+    attributes:
+      label: Nome da skill
+      placeholder: ex. diagram-design
+    validations:
+      required: true
+  - type: input
+    id: repo
+    attributes:
+      label: Repositório no GitHub
+      placeholder: ex. https://github.com/dono/repositorio
+    validations:
+      required: true
+  - type: textarea
+    id: oque
+    attributes:
+      label: O que faz e porque é útil
+      description: Uma ou duas frases, em português.
+    validations:
+      required: true
+  - type: input
+    id: frase
+    attributes:
+      label: Frase que a ativa (opcional)
+      placeholder: ex. Desenha o fluxo de captação de leads.
+  - type: checkboxes
+    id: seguranca
+    attributes:
+      label: Verificação
+      options:
+        - label: Li o SKILL.md e não encontrei nada suspeito (pedidos de chaves, .env, curl para a shell).
+          required: true
