@@ -60,6 +60,11 @@ h1{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;font
 .trigger{background:var(--bg);border-radius:3px;padding:8px 12px;font-style:italic;display:inline-block}
 .origin{font-size:.85rem;color:var(--muted)}
 .empty{color:var(--muted)}
+.acoes{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.btn{all:unset;cursor:pointer;font-size:.92rem;font-weight:600;padding:8px 14px;border-radius:3px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.btn:hover{border-color:var(--c)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.btn.principal{background:var(--c);border-color:var(--c);color:#fff}
 .notes{margin-top:28px;font-size:.9rem;color:var(--muted);max-width:70ch}
 @media (prefers-reduced-motion:reduce){.el{transition:none}.el:hover{transform:none}}
 </style>
@@ -242,7 +247,7 @@ const EL = [
  ["Mi","import-memory","fer",6,12,0,"Anthropic (exemplo)","Importa a memória de outro assistente de IA para a memória do Claude.","Importa a minha memória do ChatGPT.",""],
  ["Ws","setup-writing-style","fer",7,12,1,"Anthropic (exemplo)","Aprende como escreves a partir das tuas mensagens e documentos e cria um perfil de voz, para os rascunhos soarem a ti.","Aprende o meu estilo de escrita.",""],
  ["Pt","paint","fer",8,12,0,"Anthropic (exemplo)","Pinta imagens originais em estilo aguarela, escritas em código, sem modelo de imagem.","Pinta um farol ao pôr do sol.",""],
- ["Le","learn","fer",9,12,0,"Anthropic (exemplo)","Modo professor: explica como e porquê algo funciona, com exemplos, perguntas e flashcards.","Explica-me o Drizzle do zero.",""],
+ ["Le","learn","fer",9,12,0,"Anthropic (exemplo)","Modo professor: explica como e porquê algo funciona, com exemplos, perguntas e flashcards.","Explica-me do zero como funciona uma API.",""],
  ["Ch","chrome-browser","fer",10,12,0,"Anthropic (exemplo)","Regras para o Claude usar o teu Chrome através da extensão Claude in Chrome.","Abre o site e preenche o formulário.",""],
  ["Pc","computer-use","fer",11,12,0,"Anthropic (exemplo)","Usa apps no teu computador e vê o ecrã, a partir da app desktop.","Organiza esta pasta no meu computador.",""],
  ["Bb","built-in-browser","fer",12,12,0,"Anthropic (exemplo)","Usa o navegador que vem dentro da app Claude Desktop.","Abre este site no teu navegador.",""],
@@ -301,7 +306,18 @@ function select(i,b){
       <div><h2>${nome}</h2><div class="fam">${FAM[fam].nome}, elemento ${i+1}${ess?' · essencial':''}</div></div></div>
     <p>${oque}</p>
     <p>Frase que a ativa:<br><span class="trigger">“${frase}”</span></p>
-    <p class="origin">Origem: ${orig}${repo?`<br>Repositório GitHub: <strong>${repo}</strong>`:''}</p>`;
+    <div class="acoes">
+      <a class="btn principal" href="https://claude.ai/new?q=${encodeURIComponent(frase)}" target="_blank" rel="noopener">Experimentar no Claude ↗</a>
+      <button class="btn" type="button" id="copiar">Copiar frase</button>
+      ${repo?`<a class="btn" href="https://github.com/${repo}" target="_blank" rel="noopener">Ver no GitHub ↗</a>`:''}
+    </div>
+    <p class="origin">Origem: ${orig}. ${repo?'Para instalar no Claude Code, segue o README do repositório.':(orig.startsWith('Plugin')?'Vem num plugin: ativa o plugin no Claude e escreve a frase.':'Já vem no Claude: basta escrever a frase numa conversa.')}</p>`;
+  const cb=document.getElementById('copiar');
+  cb.addEventListener('click',async()=>{
+    try{await navigator.clipboard.writeText(frase);cb.textContent='Copiada ✓';}
+    catch(e){cb.textContent='Seleciona e copia à mão';}
+    setTimeout(()=>{cb.textContent='Copiar frase';},2000);
+  });
 }
 
 Object.entries(FAM).forEach(([k,f])=>{
