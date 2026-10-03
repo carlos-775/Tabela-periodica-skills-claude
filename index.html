@@ -66,6 +66,15 @@ h1{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;font
 .btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .btn.principal{background:var(--c);border-color:var(--c);color:#fff}
 .aviso{font-size:.82rem;color:var(--muted);margin:4px 0 0}
+.sugerir{--c:var(--eng);margin-top:28px;background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:3px;padding:18px 20px}
+.sugerir h2{margin:0 0 4px;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:1.6rem}
+.sug-lede{color:var(--muted);margin:0 0 14px;max-width:65ch}
+.campos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:10px}
+.campos label{display:flex;flex-direction:column;gap:4px;font-size:.9rem;font-weight:600}
+.campos .largo{grid-column:1/-1}
+.campos input,.campos textarea{font:inherit;font-weight:400;padding:8px 10px;border:1px solid var(--line);border-radius:3px;background:var(--bg);color:var(--ink)}
+.campos input:focus,.campos textarea:focus{outline:2px solid var(--ink);outline-offset:1px}
+.erro{color:#C0392B;font-size:.9rem;min-height:1.2em;margin:0 0 8px}
 .notes{margin-top:28px;font-size:.9rem;color:var(--muted);max-width:70ch}
 @media (prefers-reduced-motion:reduce){.el{transition:none}.el:hover{transform:none}}
 </style>
@@ -73,13 +82,27 @@ h1{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;font
 <body>
 <main>
   <h1>Tabela Periódica das Skills do Claude</h1>
-  <p class="lede">Cada elemento é uma skill: um pacote de instruções que o Claude carrega quando a tarefa pede. Toca num elemento para ver o que faz e a frase que a ativa. A estrela marca as essenciais para começar.</p>
+  <p class="lede">Cada elemento é uma skill: um pacote de instruções que o Claude carrega quando a tarefa pede. Toca num elemento para ver o que faz e a frase que a ativa. A estrela marca as essenciais para começar. <a href="#sugerir">Sugere uma skill</a>.</p>
 
   <ul class="legend" id="legend"></ul>
   <div class="scroll"><div class="table" id="table" role="group" aria-label="Tabela de skills"></div></div>
 
   <section class="detail" id="detail" aria-live="polite">
     <p class="empty">Escolhe um elemento da tabela.</p>
+  </section>
+
+  <section class="sugerir" id="sugerir" aria-labelledby="sug-titulo">
+    <h2 id="sug-titulo">Sugere uma skill</h2>
+    <p class="sug-lede">Conheces uma skill que devia estar aqui? Preenche e envia. Eu revejo cada sugestão e, se entrar, fica com crédito para ti.</p>
+    <div class="campos">
+      <label>Nome da skill *<input id="f-nome" required placeholder="ex. diagram-design" autocomplete="off"></label>
+      <label>Link do repositório no GitHub *<input id="f-repo" required type="url" placeholder="https://github.com/dono/repositorio" autocomplete="off"></label>
+      <label class="largo">O que faz e porque é útil *<textarea id="f-oque" required rows="3" placeholder="Uma ou duas frases."></textarea></label>
+      <label class="largo">Frase que a ativa (opcional)<input id="f-frase" placeholder="ex. Desenha o fluxo de captação de leads." autocomplete="off"></label>
+    </div>
+    <p class="erro" id="f-erro" role="alert"></p>
+    <button class="btn principal" type="button" id="f-enviar">Enviar sugestão ↗</button>
+    <p class="aviso">Abre o GitHub com tudo preenchido. Precisas de uma conta GitHub gratuita para carregar em "Create".</p>
   </section>
 
   <p class="notes">Origem: <strong>Anthropic</strong> são as skills oficiais (as de ficheiros vêm ativas no Claude.ai; as restantes estão no repositório anthropics/skills). <strong>Plugin</strong> vem de pacotes instaláveis (engenharia e jurídico da Anthropic; SEO de terceiros). <strong>Tua</strong> é uma skill criada à medida com o Skill Creator. <strong>Comunidade</strong> são as mais recomendadas até outubro de 2026; a maioria foi pensada para o Claude Code, mas qualquer uma pode ser carregada no Claude.ai como ZIP. Skills podem executar código: lê o SKILL.md antes de instalar uma de fonte desconhecida.</p>
@@ -333,6 +356,18 @@ Object.entries(FAM).forEach(([k,f])=>{
     document.querySelectorAll('.el').forEach(el=>el.classList.toggle('dim',!active.has(el.dataset.fam)));
   });
   li.appendChild(b); legend.appendChild(li);
+});
+const BASE='https://github.com/carlos-775/Tabela-periodica-skills-claude/issues/new';
+document.getElementById('f-enviar').addEventListener('click',()=>{
+  const v=id=>document.getElementById(id).value.trim();
+  const nome=v('f-nome'),repo=v('f-repo'),oque=v('f-oque'),frase=v('f-frase');
+  const erro=document.getElementById('f-erro');
+  if(!nome||!repo||!oque){erro.textContent='Preenche o nome, o link e o que faz.';return;}
+  if(!/^https:\/\/github\.com\/[^\/\s]+\/[^\/\s]+/.test(repo)){erro.textContent='O link tem de ser de um repositório do GitHub (https://github.com/dono/repositorio).';return;}
+  erro.textContent='';
+  const q=new URLSearchParams({template:'sugerir-skill.yml',title:'[Sugestão] '+nome,nome,repo,oque});
+  if(frase) q.set('frase',frase);
+  window.open(BASE+'?'+q.toString(),'_blank','noopener');
 });
 </script>
 </body>
