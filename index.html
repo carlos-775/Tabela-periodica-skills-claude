@@ -74,7 +74,10 @@ h1{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;font
 .campos .largo{grid-column:1/-1}
 .campos input,.campos textarea{font:inherit;font-weight:400;padding:8px 10px;border:1px solid var(--line);border-radius:3px;background:var(--bg);color:var(--ink)}
 .campos input:focus,.campos textarea:focus{outline:2px solid var(--ink);outline-offset:1px}
+.ok{color:var(--seo);font-size:.9rem;font-weight:600;min-height:1.2em;margin:4px 0}
 .erro{color:#C0392B;font-size:.9rem;min-height:1.2em;margin:0 0 8px}
+.rodape{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-size:.95rem;color:var(--muted)}
+.rodape a,.lede a{color:var(--ink);font-weight:600}
 .notes{margin-top:28px;font-size:.9rem;color:var(--muted);max-width:70ch}
 @media (prefers-reduced-motion:reduce){.el{transition:none}.el:hover{transform:none}}
 </style>
@@ -82,7 +85,7 @@ h1{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;font
 <body>
 <main>
   <h1>Tabela Periódica das Skills do Claude</h1>
-  <p class="lede">Cada elemento é uma skill: um pacote de instruções que o Claude carrega quando a tarefa pede. Toca num elemento para ver o que faz e a frase que a ativa. A estrela marca as essenciais para começar. <a href="#sugerir">Sugere uma skill</a>.</p>
+  <p class="lede">Cada elemento é uma skill: um pacote de instruções que o Claude carrega quando a tarefa pede. Toca num elemento para ver o que faz e a frase que a ativa. A estrela marca as essenciais para começar. <a href="#sugerir">Sugere uma skill</a> · Instagram <a href="https://www.instagram.com/carlosperes719/" target="_blank" rel="noopener">@carlosperes719</a>.</p>
 
   <ul class="legend" id="legend"></ul>
   <div class="scroll"><div class="table" id="table" role="group" aria-label="Tabela de skills"></div></div>
@@ -96,16 +99,23 @@ h1{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;font
     <p class="sug-lede">Conheces uma skill que devia estar aqui? Preenche e envia. Eu revejo cada sugestão e, se entrar, fica com crédito para ti.</p>
     <div class="campos">
       <label>Nome da skill *<input id="f-nome" required placeholder="ex. diagram-design" autocomplete="off"></label>
-      <label>Link do repositório no GitHub *<input id="f-repo" required type="url" placeholder="https://github.com/dono/repositorio" autocomplete="off"></label>
+      <label>Link da skill (GitHub ou site) *<input id="f-repo" required type="url" placeholder="https://github.com/dono/repositorio" autocomplete="off"></label>
       <label class="largo">O que faz e porque é útil *<textarea id="f-oque" required rows="3" placeholder="Uma ou duas frases."></textarea></label>
       <label class="largo">Frase que a ativa (opcional)<input id="f-frase" placeholder="ex. Desenha o fluxo de captação de leads." autocomplete="off"></label>
     </div>
     <p class="erro" id="f-erro" role="alert"></p>
-    <button class="btn principal" type="button" id="f-enviar">Enviar sugestão ↗</button>
-    <p class="aviso">Abre o GitHub com tudo preenchido. Precisas de uma conta GitHub gratuita para carregar em "Create".</p>
+    <div class="acoes">
+      <button class="btn principal" type="button" id="f-enviar">Enviar pelo GitHub ↗</button>
+      <button class="btn" type="button" id="f-insta">Sem GitHub? Enviar pelo Instagram ↗</button>
+    </div>
+    <p class="ok" id="f-ok" role="status"></p>
+    <p class="aviso">GitHub: abre o formulário com tudo preenchido (precisas de conta gratuita). Instagram: copia a tua sugestão e abre uma mensagem para @carlosperes719, onde só tens de colar e enviar.</p>
   </section>
 
   <p class="notes">Origem: <strong>Anthropic</strong> são as skills oficiais (as de ficheiros vêm ativas no Claude.ai; as restantes estão no repositório anthropics/skills). <strong>Plugin</strong> vem de pacotes instaláveis (engenharia e jurídico da Anthropic; SEO de terceiros). <strong>Tua</strong> é uma skill criada à medida com o Skill Creator. <strong>Comunidade</strong> são as mais recomendadas até outubro de 2026; a maioria foi pensada para o Claude Code, mas qualquer uma pode ser carregada no Claude.ai como ZIP. Skills podem executar código: lê o SKILL.md antes de instalar uma de fonte desconhecida.</p>
+  <footer class="rodape">
+    Feito por Carlos · Segue no Instagram <a href="https://www.instagram.com/carlosperes719/" target="_blank" rel="noopener">@carlosperes719</a> · <a href="https://github.com/carlos-775/Tabela-periodica-skills-claude" target="_blank" rel="noopener">Repositório no GitHub</a>
+  </footer>
 </main>
 
 <script>
@@ -358,13 +368,30 @@ Object.entries(FAM).forEach(([k,f])=>{
   li.appendChild(b); legend.appendChild(li);
 });
 const BASE='https://github.com/carlos-775/Tabela-periodica-skills-claude/issues/new';
-document.getElementById('f-enviar').addEventListener('click',()=>{
+
+const INSTA='https://ig.me/m/carlosperes719';
+function lerCampos(exigirGithub){
   const v=id=>document.getElementById(id).value.trim();
-  const nome=v('f-nome'),repo=v('f-repo'),oque=v('f-oque'),frase=v('f-frase');
+  const d={nome:v('f-nome'),repo:v('f-repo'),oque:v('f-oque'),frase:v('f-frase')};
   const erro=document.getElementById('f-erro');
-  if(!nome||!repo||!oque){erro.textContent='Preenche o nome, o link e o que faz.';return;}
-  if(!/^https:\/\/github\.com\/[^\/\s]+\/[^\/\s]+/.test(repo)){erro.textContent='O link tem de ser de um repositório do GitHub (https://github.com/dono/repositorio).';return;}
+  document.getElementById('f-ok').textContent='';
+  if(!d.nome||!d.repo||!d.oque){erro.textContent='Preenche o nome, o link e o que faz.';return null;}
+  if(exigirGithub&&!/^https:\/\/github\.com\/[^\/\s]+\/[^\/\s]+/.test(d.repo)){erro.textContent='O link tem de ser de um repositório do GitHub (https://github.com/dono/repositorio).';return null;}
+  if(!exigirGithub&&!/^https?:\/\/\S+\.\S+/.test(d.repo)){erro.textContent='O link tem de começar por https://';return null;}
   erro.textContent='';
+  return d;
+}
+document.getElementById('f-insta').addEventListener('click',async()=>{
+  const d=lerCampos(false); if(!d) return;
+  const msg='Sugestão para a Tabela Periódica das Skills do Claude\n\nSkill: '+d.nome+'\nLink: '+d.repo+'\nO que faz: '+d.oque+(d.frase?'\nFrase: '+d.frase:'');
+  const ok=document.getElementById('f-ok');
+  try{await navigator.clipboard.writeText(msg);ok.textContent='Sugestão copiada ✓ Cola-a na conversa do Instagram que se abriu e envia.';}
+  catch(e){ok.textContent='Não consegui copiar sozinho: copia os campos à mão e cola-os na conversa do Instagram.';}
+  window.open(INSTA,'_blank','noopener');
+});
+document.getElementById('f-enviar').addEventListener('click',()=>{
+  const d=lerCampos(true); if(!d) return;
+  const {nome,repo,oque,frase}=d;
   const q=new URLSearchParams({template:'sugerir-skill.yml',title:'[Sugestão] '+nome,nome,repo,oque});
   if(frase) q.set('frase',frase);
   window.open(BASE+'?'+q.toString(),'_blank','noopener');

@@ -227,7 +227,7 @@
 
 ## Contribuir
 
-Conheces uma skill que devia estar aqui? Abre uma **Issue** com o modelo "Sugerir uma skill" ou lê o [CONTRIBUTING.md](CONTRIBUTING.md).
+Conheces uma skill que devia estar aqui? Usa o formulário da página, manda mensagem no Instagram [@carlosperes719](https://www.instagram.com/carlosperes719/) ou abre uma **Issue** com o modelo "Sugerir uma skill" ou lê o [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Como instalar uma skill
 
@@ -236,4 +236,4 @@ No Claude Code, a maioria instala com `npx skills add <dono>/<repositório>`, ou
 ---
 Conteúdo sob licença [CC BY 4.0](LICENSE): podes partilhar e adaptar, desde que dês crédito ao autor.
 
-Feito por Carlos Santos · [Shalon Soluções Tecnológicas](https://shalon.pt)
+Feito por Carlos · Instagram [@carlosperes719](https://www.instagram.com/carlosperes719/) · [Shalon Soluções Tecnológicas](https://shalon.pt)
