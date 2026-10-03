@@ -65,6 +65,7 @@ h1{font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-weight:700;font
 .btn:hover{border-color:var(--c)}
 .btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .btn.principal{background:var(--c);border-color:var(--c);color:#fff}
+.aviso{font-size:.82rem;color:var(--muted);margin:4px 0 0}
 .notes{margin-top:28px;font-size:.9rem;color:var(--muted);max-width:70ch}
 @media (prefers-reduced-motion:reduce){.el{transition:none}.el:hover{transform:none}}
 </style>
@@ -311,6 +312,7 @@ function select(i,b){
       <button class="btn" type="button" id="copiar">Copiar frase</button>
       ${repo?`<a class="btn" href="https://github.com/${repo}" target="_blank" rel="noopener">Ver no GitHub ↗</a>`:''}
     </div>
+    <p class="aviso">O Claude mostra um aviso porque a frase chega por um link. É normal: lê a frase e envia.</p>
     <p class="origin">Origem: ${orig}. ${repo?'Para instalar no Claude Code, segue o README do repositório.':(orig.startsWith('Plugin')?'Vem num plugin: ativa o plugin no Claude e escreve a frase.':'Já vem no Claude: basta escrever a frase numa conversa.')}</p>`;
   const cb=document.getElementById('copiar');
   cb.addEventListener('click',async()=>{
